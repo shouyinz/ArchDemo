@@ -5,11 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shouyinz.archdemo.repo.CurrencyRepo
 import com.shouyinz.archdemo.vo.Currency
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.*
+import kotlinx.coroutines.*
 import kotlin.Comparator
 import kotlin.collections.ArrayList
 
@@ -18,6 +14,8 @@ class DemoViewModel : ViewModel() {
     val showProgress = MutableLiveData(false)
     val currencyList = MutableLiveData<ArrayList<Currency>>(ArrayList())
     val onCurrencyClicked = MutableLiveData<Currency>()
+
+    private var flag: Boolean = false
 
     fun init(repo: CurrencyRepo) {
         viewModelScope.launch {
@@ -35,18 +33,31 @@ class DemoViewModel : ViewModel() {
     }
 
     fun sort() {
-        ArrayList<Currency>().apply {
-            currencyList.value?.let {
-                addAll(it)
-            }
-            sortWith(Comparator { p0, p1 ->
-                if (p0 == null || p1 == null) {
-                    0
-                } else {
-                    p0.symbol.compareTo(p1.symbol)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                showProgress.postValue(true)
+                ArrayList<Currency>().apply {
+                    currencyList.value?.let {
+                        addAll(it)
+                    }
+                    sortWith(Comparator { p0, p1 ->
+                        if (p0 == null || p1 == null) {
+                            0
+                        } else {
+                            if (flag) {
+                                p0.symbol.compareTo(p1.symbol)
+                            } else {
+                                p1.symbol.compareTo(p0.symbol)
+                            }
+                        }
+                    })
+                    flag = !flag
+                    // Dummy delay to simulate IO
+                    delay(3000)
+                    currencyList.postValue(this)
+                    showProgress.postValue(false)
                 }
-            })
-            currencyList.postValue(this)
+            }
         }
     }
 }
