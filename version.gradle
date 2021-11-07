@@ -14,5 +14,6 @@ ext.versions = [
         'fragmentAndroidx'   : '1.4.0-alpha04',
         'recyclerView'       : '1.2.0',
         'lifecycleExtensions': '2.2.0',
-        'navigation'         : '2.3.5'
+        'navigation'         : '2.3.5',
+        'room'               : '2.3.0'
 ]
