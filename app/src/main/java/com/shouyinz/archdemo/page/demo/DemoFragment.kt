@@ -27,9 +27,11 @@ class DemoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe()
-        demoViewModel.init(
-            CurrencyRepo(CurrencyDatabase.getDatabase(requireContext()))
-        )
+        binding.btnLoadData.setOnClickListener {
+            demoViewModel.init(
+                CurrencyRepo(CurrencyDatabase.getDatabase(requireContext()))
+            )
+        }
     }
 
     private fun observe() {

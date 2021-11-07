@@ -25,4 +25,8 @@ class CurrencyRepo(
         currencyDao.insert(Currency("CUC", "Cucumber", "CUC"))
         currencyDao.insert(Currency("USDC", "USD Coin", "USDC"))
     }
+
+    suspend fun fetchCurrency(): List<Currency> {
+        return database.currencyDao().getCurrencyList()
+    }
 }

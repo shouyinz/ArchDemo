@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">archDemo</string>
+    <string name="btn_load_data">Load Data</string>
 </resources>
