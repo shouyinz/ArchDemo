@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    android:label="main_nav_graph"
+    app:startDestination="@id/demo_fragment">
+
+    <fragment
+        android:id="@+id/demo_fragment"
+        android:name="com.shouyinz.archdemo.page.DemoFragment"
+        android:label="demo_fragment" />
+
+</navigation>
