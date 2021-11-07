@@ -9,8 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
-class DemoViewModel: ViewModel() {
+class DemoViewModel : ViewModel() {
 
     val showProgress = MutableLiveData(false)
     val currencyList = MutableLiveData<ArrayList<Currency>>(ArrayList())
@@ -29,5 +32,21 @@ class DemoViewModel: ViewModel() {
 
     fun currencyCallback(currency: Currency) {
         onCurrencyClicked.postValue(currency)
+    }
+
+    fun sort() {
+        ArrayList<Currency>().apply {
+            currencyList.value?.let {
+                addAll(it)
+            }
+            sortWith(Comparator { p0, p1 ->
+                if (p0 == null || p1 == null) {
+                    0
+                } else {
+                    p0.symbol.compareTo(p1.symbol)
+                }
+            })
+            currencyList.postValue(this)
+        }
     }
 }

@@ -35,6 +35,9 @@ class DemoFragment : Fragment() {
                 CurrencyRepo(CurrencyDatabase.getDatabase(requireContext()))
             )
         }
+        binding.btnSorting.setOnClickListener {
+            demoViewModel.sort()
+        }
     }
 
     private fun observe() {
