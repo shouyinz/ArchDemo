@@ -1,0 +1,18 @@
+ext.versions = [
+        'okhttp'             : '3.12.0',
+        'coroutines'         : '1.5.0',
+        'kotlin'             : '1.5.10',
+        'appCompat'          : '1.2.0',
+        'constraintLayout'   : '2.0.4',
+        'material'           : '1.3.0',
+        'androidx'           : '1.0.0',
+        'lifecycle'          : '2.3.1',
+        'picasso'            : '2.71828',
+        'room'               : '2.3.0',
+        'swipe'              : '1.1.0',
+        'activityAndroidx'   : '1.2.0',
+        'fragmentAndroidx'   : '1.4.0-alpha04',
+        'recyclerView'       : '1.2.0',
+        'lifecycleExtensions': '2.2.0',
+        'navigation'         : '2.3.5'
+]
