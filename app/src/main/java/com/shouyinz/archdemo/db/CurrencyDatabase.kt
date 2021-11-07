@@ -15,21 +15,15 @@ abstract class CurrencyDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: CurrencyDatabase? = null
 
-        fun getInstance(context: Context): CurrencyDatabase {
-
-            synchronized(this) {
-                var instance = INSTANCE
-
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        CurrencyDatabase::class.java,
-                        "currency"
-                    ).fallbackToDestructiveMigration()
-                        .build()
-                    INSTANCE = instance
-                }
-                return instance
+        fun getDatabase(context: Context): CurrencyDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    CurrencyDatabase::class.java,
+                    "currency_db"
+                ).build()
+                INSTANCE = instance
+                instance
             }
         }
     }

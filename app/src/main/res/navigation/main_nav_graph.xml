@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/demo_fragment"
-        android:name="com.shouyinz.archdemo.page.DemoFragment"
+        android:name="com.shouyinz.archdemo.page.demo.DemoFragment"
         android:label="demo_fragment" />
 
 </navigation>

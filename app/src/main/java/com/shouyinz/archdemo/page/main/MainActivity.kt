@@ -1,4 +1,4 @@
-package com.shouyinz.archdemo.page
+package com.shouyinz.archdemo.page.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
