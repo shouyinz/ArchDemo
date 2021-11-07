@@ -38,7 +38,11 @@ class CurrencyListFragment: Fragment() {
     private fun observe() {
         demoViewModel.currencyList.observe(viewLifecycleOwner) { list ->
             binding.rvCurrency.apply {
-                adapter = CurrencyListAdapter(list)
+                adapter = CurrencyListAdapter(
+                    list
+                ) { currency ->
+                    demoViewModel.currencyCallback(currency)
+                }
             }
         }
     }

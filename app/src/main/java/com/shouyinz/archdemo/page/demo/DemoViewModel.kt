@@ -14,6 +14,7 @@ class DemoViewModel: ViewModel() {
 
     val showProgress = MutableLiveData(false)
     val currencyList = MutableLiveData<ArrayList<Currency>>(ArrayList())
+    val onCurrencyClicked = MutableLiveData<Currency>()
 
     fun init(repo: CurrencyRepo) {
         viewModelScope.launch {
@@ -24,5 +25,9 @@ class DemoViewModel: ViewModel() {
                 showProgress.postValue(false)
             }
         }
+    }
+
+    fun currencyCallback(currency: Currency) {
+        onCurrencyClicked.postValue(currency)
     }
 }

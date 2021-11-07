@@ -8,6 +8,7 @@ import com.shouyinz.archdemo.vo.Currency
 
 class CurrencyListAdapter(
     private val currencyList: ArrayList<Currency>,
+    private val onCurrencyClick: ((Currency) -> Unit)? = null
 ) : RecyclerView.Adapter<CurrencyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
@@ -20,6 +21,9 @@ class CurrencyListAdapter(
 
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
         holder.bind(currencyList[position])
+        holder.itemView.setOnClickListener {
+            onCurrencyClick?.invoke(currencyList[position])
+        }
     }
 
     override fun onViewRecycled(holder: CurrencyViewHolder) {
